@@ -23,7 +23,7 @@ const segments: WheelSegment[] = [
 
 const InspectionWheel: React.FC = () => {
     const [hoveredIndex, setHoveredIndex] = React.useState<number | null>(null);
-    
+
     // Mapping 12 months to 10 segments
     const currentMonthIndex = useMemo(() => {
         const month = new Date().getMonth();
@@ -66,8 +66,8 @@ const InspectionWheel: React.FC = () => {
             const isHovered = i === hoveredIndex;
 
             return (
-                <g 
-                    key={i} 
+                <g
+                    key={i}
                     className="group/segment cursor-pointer transition-all duration-300"
                     onMouseEnter={() => setHoveredIndex(i)}
                     onMouseLeave={() => setHoveredIndex(null)}
@@ -203,8 +203,6 @@ const InspectionWheel: React.FC = () => {
                                     </radialGradient>
                                 </defs>
 
-                                {/* Outer Ring */}
-                                <circle cx="200" cy="200" r="198" fill="none" stroke="#f1f5f9" strokeWidth="4" />
 
                                 {renderSegments}
 
@@ -220,7 +218,7 @@ const InspectionWheel: React.FC = () => {
                                         strokeWidth="2"
                                         className="transition-all duration-300"
                                     />
-                                    
+
                                     {/* Dotted decorative interactive wheel */}
                                     <circle
                                         cx="200"
@@ -236,10 +234,10 @@ const InspectionWheel: React.FC = () => {
 
                                     {hoveredIndex !== null ? (
                                         <g className="animate-entry-fade">
-                                            <circle 
-                                                cx="200" 
-                                                cy="200" 
-                                                r="70" 
+                                            <circle
+                                                cx="200"
+                                                cy="200"
+                                                r="70"
                                                 fill="none"
                                                 stroke="#f97316"
                                                 strokeWidth="1.5"
@@ -265,9 +263,17 @@ const InspectionWheel: React.FC = () => {
                                                 className="group-hover/center:scale-[1.03] transition-transform duration-300"
                                                 style={{ transformOrigin: '200px 200px' }}
                                             />
+                                            <image
+                                                href="/LogoRTPSanCristobal_horizontal.png"
+                                                x="165"
+                                                y="148"
+                                                width="70"
+                                                height="18"
+                                                style={{ filter: 'brightness(0) invert(1)' }}
+                                            />
                                             <text
                                                 x="200"
-                                                y="190"
+                                                y="186"
                                                 textAnchor="middle"
                                                 className="fill-white text-[9px] font-black uppercase tracking-[0.2em]"
                                             >
@@ -275,14 +281,14 @@ const InspectionWheel: React.FC = () => {
                                             </text>
                                             <text
                                                 x="200"
-                                                y="215"
+                                                y="210"
                                                 textAnchor="middle"
                                                 className="fill-white text-lg font-black uppercase tracking-tighter"
                                             >
                                                 CRONOGRAMA
                                             </text>
                                             <path
-                                                d="M 188 226 L 212 226"
+                                                d="M 188 222 L 212 222"
                                                 stroke="white"
                                                 strokeWidth="1.5"
                                                 strokeLinecap="round"
