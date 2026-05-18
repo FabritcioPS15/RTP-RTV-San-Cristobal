@@ -225,32 +225,34 @@ function Nosotros() {
       {helmetContent}
       <div className="bg-[#f8fafc] overflow-hidden">
         {/* 1. HERO SECTION */}
-        <section className="relative h-[85vh] min-h-[600px] flex items-center bg-black overflow-hidden px-4 md:px-0">
-          {/* Background Image with Dark Overlay */}
-          <div
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-60"
-            style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80")' }}
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-black via-black/60 to-transparent" />
+        <section className="relative h-[40vh] min-h-[350px] flex items-center bg-black overflow-hidden">
+          {/* Background Layer with uniform overlay */}
+          <div className="absolute inset-0 z-0">
+            <div
+              className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-60"
+              style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80")' }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-black via-black/50 to-transparent" />
+          </div>
 
           <div className="relative z-10 max-w-7xl mx-auto px-4 w-full">
             <RevealOnScroll>
               <div className="max-w-4xl flex items-center gap-8 group">
-                <div className="w-1.5 h-40 bg-orange-500 rounded-full shrink-0 animate-grow-vertical" />
-                <div className="space-y-8">
-                  <p className="text-orange-500 font-bold tracking-[0.2em] uppercase text-sm mb-4">MECANICAL ATELIER</p>
+                <div className="w-1.5 h-32 bg-orange-500 rounded-full shrink-0 animate-grow-vertical" />
+                <div className="space-y-6">
                   <h1 className="banner-title text-white animate-grow-text">
-                    Compromiso con la <br />
-                    <span className="text-orange-500">Excelencia</span> Vial
+                    Compromiso con la <span className="text-orange-500">Excelencia</span> Vial
                   </h1>
-                  <div className="w-24 h-1.5 bg-orange-500 mb-8 animate-grow-horizontal" />
-                  <p className="banner-description text-gray-300 max-w-2xl">
+                  <p className="banner-description text-gray-400 max-w-2xl">
                     Definiendo los estándares de seguridad técnica a través de la precisión quirúrgica en cada inspección y diagnóstico.
                   </p>
                 </div>
               </div>
             </RevealOnScroll>
           </div>
+
+          {/* Bottom Decorative Detail */}
+          <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-orange-500 via-orange-500/0 to-transparent opacity-50" />
         </section>
 
         {/* 2. VISION / MISSION / VALUES GRID */}
