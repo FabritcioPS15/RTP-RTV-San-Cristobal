@@ -33,7 +33,7 @@ function SedeDetalle() {
     return (
         <div className="min-h-screen bg-white">
             {/* HERO SECTION - ADAPTADO CON ESTÉTICA PREMIUM */}
-            <section className="relative h-[240px] md:h-[400px] w-full bg-black overflow-hidden flex items-center pt-12 md:pt-16">
+            <section className="relative h-[40vh] min-h-[350px] w-full bg-black overflow-hidden flex items-center">
                 {/* Cuadriláteros de fondo y máscara de imagen adaptativos */}
                 <div className="absolute inset-0 z-0">
                     {/* Fondo Gris Claro (Decorativo) */}
@@ -73,7 +73,7 @@ function SedeDetalle() {
                     {/* Texto Informativo Adaptado - Muy compacto en móvil */}
                     <div className="flex items-center gap-4 md:gap-8">
                         {/* Barra decorativa vertical naranja (Más pequeña en móvil) */}
-                        <div className="w-1 md:w-1.5 h-12 md:h-40 bg-[#f97316] rounded-full shrink-0 shadow-[0_0_25px_rgba(249,115,22,0.6)] animate-grow-vertical" />
+                        <div className="w-1.5 h-32 bg-orange-500 rounded-full shrink-0 shadow-[0_0_25px_rgba(249,115,22,0.6)] animate-grow-vertical" />
 
                         <div className="text-white max-w-2xl">
                             <h1 className="banner-title text-white animate-grow-text">
@@ -100,6 +100,9 @@ function SedeDetalle() {
                         </div>
                     </div>
                 </div>
+
+                {/* Bottom Decorative Detail */}
+                <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-orange-500 via-orange-500/0 to-transparent opacity-50" />
             </section>
 
             {/* SERVICIOS SECTION */}
