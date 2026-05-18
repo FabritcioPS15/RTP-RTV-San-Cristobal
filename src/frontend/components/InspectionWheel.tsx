@@ -71,13 +71,21 @@ const InspectionWheel: React.FC = () => {
                     className="group/segment cursor-pointer transition-all duration-300"
                     onMouseEnter={() => setHoveredIndex(i)}
                     onMouseLeave={() => setHoveredIndex(null)}
+                    style={{
+                        transformOrigin: '200px 200px',
+                        transform: isHovered ? 'scale(1.03)' : 'scale(1)',
+                        transition: 'all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)'
+                    }}
                 >
                     <path
                         d={pathData}
-                        className={`transition-all duration-500 ${isCurrentMonth
-                                ? 'fill-orange-500 stroke-white stroke-2 drop-shadow-[0_0_15px_rgba(249,115,22,0.4)]'
-                                : 'fill-white stroke-gray-100 hover:fill-orange-50 group-hover/segment:stroke-orange-200'
-                            }`}
+                        fill={isCurrentMonth ? "url(#activeSegGrad)" : (isHovered ? "url(#hoverSegGrad)" : "url(#inactiveSegGrad)")}
+                        stroke={isCurrentMonth ? "#ffffff" : "#e2e8f0"}
+                        strokeWidth={isCurrentMonth ? "3" : "1.5"}
+                        className="transition-all duration-500"
+                        style={{
+                            filter: isCurrentMonth ? 'drop-shadow(0 8px 16px rgba(249, 115, 22, 0.35))' : 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.01))'
+                        }}
                     />
                     <text
                         x={txMonth}
@@ -85,8 +93,8 @@ const InspectionWheel: React.FC = () => {
                         textAnchor="middle"
                         dominantBaseline="middle"
                         transform={`rotate(${textAngle + 90}, ${txMonth}, ${tyMonth})`}
-                        className={`text-[10px] font-black tracking-tighter ${isCurrentMonth ? 'fill-white' : 'fill-gray-400 group-hover/segment:fill-orange-500'
-                            }`}
+                        className={`text-[9px] font-extrabold tracking-widest ${isCurrentMonth ? 'fill-white' : 'fill-gray-400 group-hover/segment:fill-orange-600'
+                            } transition-colors duration-300`}
                     >
                         {seg.month}
                     </text>
@@ -96,15 +104,14 @@ const InspectionWheel: React.FC = () => {
                         textAnchor="middle"
                         dominantBaseline="middle"
                         className={`text-2xl font-black ${isCurrentMonth ? 'fill-white' : 'fill-gray-900 group-hover/segment:fill-orange-600'
-                            }`}
+                            } transition-colors duration-300`}
                     >
                         {seg.digit}
                     </text>
-
                 </g>
             );
         });
-    }, [currentMonthIndex]);
+    }, [currentMonthIndex, hoveredIndex]);
 
     return (
         <section className="py-20 bg-white overflow-hidden">
@@ -171,6 +178,25 @@ const InspectionWheel: React.FC = () => {
                                 className="w-full h-full drop-shadow-2xl relative z-10"
                             >
                                 <defs>
+                                    {/* Gradient for active segment */}
+                                    <linearGradient id="activeSegGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stopColor="#ff9f43" />
+                                        <stop offset="100%" stopColor="#ff5e00" />
+                                    </linearGradient>
+
+                                    {/* Gradient for inactive segment */}
+                                    <linearGradient id="inactiveSegGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stopColor="#ffffff" />
+                                        <stop offset="100%" stopColor="#f8fafc" />
+                                    </linearGradient>
+
+                                    {/* Gradient for hovered segment */}
+                                    <linearGradient id="hoverSegGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stopColor="#fff7ed" />
+                                        <stop offset="100%" stopColor="#ffedd5" />
+                                    </linearGradient>
+
+                                    {/* Radial gradient for the central button */}
                                     <radialGradient id="centerGradient" cx="50%" cy="50%" r="50%">
                                         <stop offset="0%" stopColor="#f97316" />
                                         <stop offset="100%" stopColor="#ea580c" />
@@ -184,65 +210,85 @@ const InspectionWheel: React.FC = () => {
 
                                 {/* Central Button Area */}
                                 <g className="cursor-pointer group/center">
+                                    {/* White plate base */}
                                     <circle
                                         cx="200"
                                         cy="200"
-                                        r="85"
-                                        fill="white"
-                                        className="shadow-xl"
+                                        r="80"
+                                        fill="#ffffff"
+                                        stroke="#f1f5f9"
+                                        strokeWidth="2"
+                                        className="transition-all duration-300"
                                     />
                                     
+                                    {/* Dotted decorative interactive wheel */}
+                                    <circle
+                                        cx="200"
+                                        cy="200"
+                                        r="75"
+                                        fill="none"
+                                        stroke="#f97316"
+                                        strokeWidth="1"
+                                        strokeDasharray="4 3"
+                                        className="opacity-40"
+                                        style={{ transformOrigin: '200px 200px', animation: 'spin 60s linear infinite' }}
+                                    />
+
                                     {hoveredIndex !== null ? (
                                         <g className="animate-entry-fade">
                                             <circle 
                                                 cx="200" 
                                                 cy="200" 
-                                                r="75" 
-                                                className="fill-orange-500/10"
+                                                r="70" 
+                                                fill="none"
+                                                stroke="#f97316"
+                                                strokeWidth="1.5"
+                                                className="opacity-20"
                                             />
-                                            <text x="200" y="180" textAnchor="middle" className="fill-orange-600 text-[10px] font-black uppercase tracking-widest">
-                                                MES: {segments[hoveredIndex].month}
+                                            <text x="200" y="172" textAnchor="middle" className="fill-orange-600 text-[9px] font-black uppercase tracking-[0.15em]">
+                                                {segments[hoveredIndex].month}
                                             </text>
-                                            <text x="200" y="205" textAnchor="middle" className="fill-gray-900 text-3xl font-black">
-                                                PLACA {segments[hoveredIndex].digit}
+                                            <text x="200" y="202" textAnchor="middle" className="fill-gray-900 text-3xl font-black tracking-tight">
+                                                {segments[hoveredIndex].digit}
                                             </text>
-                                            <text x="200" y="225" textAnchor="middle" className="fill-gray-500 text-[8px] font-bold uppercase tracking-tight">
+                                            <text x="200" y="222" textAnchor="middle" className="fill-gray-400 text-[8px] font-extrabold uppercase tracking-widest">
                                                 ÚLTIMO DÍGITO
                                             </text>
                                         </g>
                                     ) : (
-                                        <>
+                                        <g className="transition-all duration-300">
                                             <circle
                                                 cx="200"
                                                 cy="200"
-                                                r="75"
+                                                r="70"
                                                 fill="url(#centerGradient)"
-                                                className="group-hover/center:scale-105 transition-transform duration-300"
+                                                className="group-hover/center:scale-[1.03] transition-transform duration-300"
+                                                style={{ transformOrigin: '200px 200px' }}
                                             />
                                             <text
                                                 x="200"
                                                 y="190"
                                                 textAnchor="middle"
-                                                className="fill-white text-[10px] font-black uppercase tracking-widest"
+                                                className="fill-white text-[9px] font-black uppercase tracking-[0.2em]"
                                             >
-                                                Verifica
+                                                EXPLORA
                                             </text>
                                             <text
                                                 x="200"
                                                 y="215"
                                                 textAnchor="middle"
-                                                className="fill-white text-xl font-black uppercase tracking-tighter"
+                                                className="fill-white text-lg font-black uppercase tracking-tighter"
                                             >
-                                                TU PLACA
+                                                CRONOGRAMA
                                             </text>
                                             <path
-                                                d="M 190 230 L 210 230"
+                                                d="M 188 226 L 212 226"
                                                 stroke="white"
-                                                strokeWidth="2"
+                                                strokeWidth="1.5"
                                                 strokeLinecap="round"
-                                                className="opacity-50"
+                                                className="opacity-60"
                                             />
-                                        </>
+                                        </g>
                                     )}
                                 </g>
                             </svg>
