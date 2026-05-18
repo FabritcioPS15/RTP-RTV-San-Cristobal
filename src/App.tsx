@@ -5,7 +5,6 @@ import Header from './frontend/components/Header';
 import Footer from './frontend/components/Footer';
 import SmoothScroll from './frontend/components/SmoothScroll';
 import FloatingWhatsApp from './frontend/components/FloatingWhatsApp';
-import WelcomePopup from './frontend/components/WelcomePopup';
 import PageTransition from './frontend/components/PageTransition';
 import CookieConsent from './frontend/components/CookieConsent';
 import LocationPrompt from './frontend/components/LocationPrompt';
@@ -41,7 +40,6 @@ function AppContent() {
     <>
       <SmoothScroll />
       <ScrollToTop />
-      <WelcomePopup />
       <div className="min-h-screen bg-white flex flex-col">
         <Header />
         <main className={`flex-grow ${location.pathname === '/' ? '' : 'pt-[90px]'}`}>

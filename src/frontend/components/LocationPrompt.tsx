@@ -6,14 +6,13 @@ const LocationPrompt = () => {
     const [status, setStatus] = useState<'idle' | 'requesting' | 'success' | 'error'>('idle');
 
     useEffect(() => {
-        // Only show if user hasn't made a choice and welcome popup is done
+        // Only show if user hasn't made a choice
         const hasAskedLocation = localStorage.getItem('hasAskedLocation');
-        const hasSeenWelcome = localStorage.getItem('hasSeenWelcomePopup');
 
-        if (!hasAskedLocation && hasSeenWelcome) {
+        if (!hasAskedLocation) {
             const timer = setTimeout(() => {
                 setIsVisible(true);
-            }, 1000);
+            }, 2000);
             return () => clearTimeout(timer);
         }
     }, []);
