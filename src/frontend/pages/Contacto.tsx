@@ -1,0 +1,169 @@
+import { Mail, MapPin, Phone, Clock } from 'lucide-react';
+import RevealOnScroll from '../components/RevealOnScroll';
+import { Helmet } from 'react-helmet-async';
+import PremiumButton from '../components/PremiumButton';
+
+function Contacto() {
+    return (
+        <div>
+            <Helmet>
+                <title>Contacto | Ponte en Contacto - Revisiones Técnicas Vehiculares</title>
+                <meta name="description" content="Contáctanos para consultas sobre revisiones técnicas vehiculares, sedes, requisitos y servicios corporativos. Atención personalizada y soporte técnico." />
+                <meta name="keywords" content="contacto, atencion al cliente, soporte revision tecnica, consultas vehiculares, informacion sedes, ayuda MTC" />
+                <link rel="canonical" href="https://tu-dominio.com/contacto" />
+            </Helmet>
+            {/* Standardized Left-Aligned Banner (Compact) */}
+            <section className="relative h-[40vh] min-h-[350px] flex items-center bg-black overflow-hidden">
+                {/* Background Layer */}
+                <div className="absolute inset-0 z-0">
+                    <img
+                        src="https://images.unsplash.com/photo-1534536281715-e28d76689b4d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
+                        alt="Contacto"
+                        className="w-full h-full object-cover opacity-60"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-r from-black via-black/50 to-transparent" />
+                </div>
+
+                <div className="relative z-10 max-w-7xl mx-auto px-4 w-full">
+                    <RevealOnScroll>
+                        <div className="max-w-3xl flex items-center gap-8 group">
+                            <div className="w-1.5 h-32 bg-orange-500 rounded-full shrink-0 animate-grow-vertical" />
+                            <div className="space-y-6">
+                                <h1 className="banner-title text-white animate-grow-text">
+                                    Contác<span className="text-orange-500">tanos</span>
+                                </h1>
+                                <p className="banner-description text-gray-400">
+                                    Estamos aquí para atenderte. Ponte en contacto con nosotros para cualquier consulta sobre nuestras revisiones técnicas o servicios corporativos.
+                                </p>
+                            </div>
+                        </div>
+                    </RevealOnScroll>
+                </div>
+
+                {/* Bottom Decorative Detail */}
+                <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-orange-500 via-orange-500/0 to-transparent opacity-50" />
+            </section>
+
+            <RevealOnScroll>
+                <section className="max-w-7xl mx-auto px-4 py-16">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                        {/* Información de Contacto */}
+                        <div>
+                            <h2 className="text-3xl font-bold mb-8">Información de Contacto</h2>
+                            <p className="content-text text-gray-600 mb-8">
+                                Ponte en contacto con nosotros para cualquier consulta sobre nuestras revisiones técnicas o servicios corporativos.
+                            </p>
+
+                            <div className="space-y-6">
+                                <div className="flex items-start space-x-4">
+                                    <div className="bg-black text-white p-3">
+                                        <MapPin size={24} />
+                                    </div>
+                                    <div>
+                                        <h3 className="font-bold text-lg">Dirección Principal</h3>
+                                        <p className="content-text text-gray-600">Av. Ejemplo 123, Lima, Perú</p>
+                                    </div>
+                                </div>
+
+                                <div className="flex items-start space-x-4">
+                                    <div className="bg-black text-white p-3">
+                                        <Phone size={24} />
+                                    </div>
+                                    <div>
+                                        <h3 className="font-bold text-lg">Teléfono</h3>
+                                        <p className="content-text text-gray-600">+51 1 234 5678</p>
+                                    </div>
+                                </div>
+
+                                <div className="flex items-start space-x-4">
+                                    <div className="bg-black text-white p-3">
+                                        <Mail size={24} />
+                                    </div>
+                                    <div>
+                                        <h3 className="font-bold text-lg">Email</h3>
+                                        <p className="content-text text-gray-600">contacto@gruposancristobal.com</p>
+                                    </div>
+                                </div>
+
+                                <div className="flex items-start space-x-4">
+                                    <div className="bg-black text-white p-3">
+                                        <Clock size={24} />
+                                    </div>
+                                    <div>
+                                        <h3 className="font-bold text-lg">Horario de Atención</h3>
+                                        <p className="content-text text-gray-600">Lunes a Sábado: 8:00 AM - 6:00 PM</p>
+                                        <p className="content-text text-gray-600">Domingo: Cerrado</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Formulario */}
+                        <div className="bg-white border-2 border-black p-8">
+                            <h2 className="text-2xl font-bold mb-6">Envíanos un mensaje</h2>
+                            <form className="space-y-6">
+                                <div>
+                                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+                                        Nombre Completo
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id="name"
+                                        className="w-full px-4 py-2 border border-gray-300 focus:ring-black focus:border-black"
+                                        placeholder="Tu nombre"
+                                    />
+                                </div>
+
+                                <div>
+                                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                                        Correo Electrónico
+                                    </label>
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        className="w-full px-4 py-2 border border-gray-300 focus:ring-black focus:border-black"
+                                        placeholder="tu@email.com"
+                                    />
+                                </div>
+
+                                <div>
+                                    <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
+                                        Teléfono
+                                    </label>
+                                    <input
+                                        type="tel"
+                                        id="phone"
+                                        className="w-full px-4 py-2 border border-gray-300 focus:ring-black focus:border-black"
+                                        placeholder="+51 999 999 999"
+                                    />
+                                </div>
+
+                                <div>
+                                    <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
+                                        Mensaje
+                                    </label>
+                                    <textarea
+                                        id="message"
+                                        rows={4}
+                                        className="w-full px-4 py-2 border border-gray-300 focus:ring-black focus:border-black"
+                                        placeholder="¿En qué podemos ayudarte?"
+                                    ></textarea>
+                                </div>
+
+                                <PremiumButton
+                                    type="submit"
+                                    className="w-full py-4 px-6"
+                                >
+                                    Enviar Mensaje
+                                </PremiumButton>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+            </RevealOnScroll>
+        </div>
+    );
+}
+
+export default Contacto;
+

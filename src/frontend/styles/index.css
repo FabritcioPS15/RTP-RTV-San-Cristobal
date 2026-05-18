@@ -1,0 +1,676 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+
+  html {
+    font-family: "DM Sans", "Barlow", "Barlow Condensed", sans-serif;
+    color: rgb(17 24 39);
+  }
+
+  p, li, .text-content {
+    font-size: 1rem;
+    line-height: 1.625;
+  }
+
+  ::selection {
+    background-color: #f97316;
+    color: white;
+  }
+
+  ::-moz-selection {
+    background-color: #f97316;
+    color: white;
+  }
+}
+
+/* Standardized Banner Typography */
+.banner-title {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.025em;
+}
+
+@media (min-width: 768px) {
+  .banner-title {
+    font-size: 4.5rem;
+  }
+}
+
+.banner-description {
+  font-size: 1.125rem;
+  line-height: 1.625;
+}
+
+@media (min-width: 768px) {
+  .banner-description {
+    font-size: 1.25rem;
+  }
+}
+
+/* Standardized Content Typography */
+.content-text {
+  font-size: 1rem;
+  line-height: 1.625;
+}
+
+
+/* Modal styles */
+body.modal-open {
+  overflow: hidden !important;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9998;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.modal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  pointer-events: none;
+}
+
+.modal-content {
+  pointer-events: auto;
+  max-height: 85vh;
+  animation: modalFadeIn 0.2s ease-out;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@layer components {
+  .glassmorphism {
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .nav-link {
+    @apply relative px-2 py-1 text-base font-medium transition-colors duration-300;
+  }
+
+  .nav-link:not(.active) {
+    @apply text-gray-400 hover:text-white hover:bg-transparent;
+  }
+
+  .nav-link.active {
+    @apply text-white;
+  }
+
+  .nav-underline {
+    @apply absolute bottom-0 left-0 w-full h-0.5 bg-orange-500 transform origin-left transition-transform duration-300;
+  }
+
+  .nav-underline.active {
+    @apply scale-x-100;
+  }
+
+  .nav-underline:not(.active) {
+    @apply scale-x-0 group-hover:scale-x-100;
+  }
+
+  .btn-primary {
+    @apply px-4 py-2 border border-white/20 hover:border-orange-500 hover:bg-transparent hover:text-white transition-all duration-300 rounded-full text-sm font-medium;
+  }
+
+  .btn-secondary {
+    @apply px-4 py-2 bg-orange-500 text-white hover:bg-orange-500/90 transition-all duration-300 rounded-full text-sm font-medium;
+  }
+
+  .reveal-base {
+    @apply transition-all duration-[400ms] ease-out;
+  }
+
+  .reveal-hidden {
+    @apply opacity-0 translate-y-6;
+  }
+
+  .reveal-visible {
+    @apply opacity-100 translate-y-0;
+  }
+
+  .mobile-menu-item {
+    @apply block w-full px-4 py-3 rounded-lg transition-all duration-300;
+    opacity: 0;
+    transform: translateX(20px);
+    animation: none;
+  }
+
+  .mobile-menu-item-visible {
+    animation: slideInFromRight 0.4s ease-out forwards;
+  }
+
+  /* Botón Premium con efecto Reveal */
+  .btn-premium-reveal {
+    @apply relative overflow-hidden transition-all duration-300;
+    background: transparent;
+    border: 1px solid #f97316;
+    color: #f97316;
+    z-index: 1;
+  }
+
+  .btn-premium-reveal::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: #f97316;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease-out, height 0.6s ease-out;
+    z-index: -1;
+  }
+
+  .btn-premium-reveal:hover {
+    color: #fff !important;
+  }
+
+  .btn-premium-reveal:hover::before {
+    width: 300%;
+    height: 500%;
+  }
+
+  /* Animaciones de entrada premium */
+  .animate-entry-fade {
+    animation: entryFade 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .animate-entry-slide-up {
+    animation: entrySlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .animate-entry-slide-down {
+    animation: entrySlideDown 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .animate-entry-scale {
+    animation: entryScale 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .animate-entry-slide-left {
+    animation: entrySlideLeft 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .animate-grow-vertical {
+    animation: growVertical 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    transform-origin: center;
+  }
+
+  .animate-grow-horizontal {
+    animation: growHorizontal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    transform-origin: left;
+  }
+
+  .animate-grow-text {
+    animation: growText 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .animate-stagger-1 {
+    animation-delay: 100ms;
+  }
+
+  .animate-stagger-2 {
+    animation-delay: 200ms;
+  }
+
+  .animate-stagger-3 {
+    animation-delay: 300ms;
+  }
+
+  .animate-stagger-4 {
+    animation-delay: 400ms;
+  }
+
+  /* Delays para transiciones (RevealOnScroll) */
+  .delay-100 {
+    transition-delay: 100ms;
+  }
+
+  .delay-200 {
+    transition-delay: 200ms;
+  }
+
+  .delay-300 {
+    transition-delay: 300ms;
+  }
+
+  .delay-400 {
+    transition-delay: 400ms;
+  }
+}
+
+@keyframes entryFade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes entrySlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes entrySlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes entryScale {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes entrySlideLeft {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes growVertical {
+  from {
+    opacity: 0;
+    transform: scaleY(0);
+  }
+  to {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+@keyframes growHorizontal {
+  from {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  to {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+@keyframes growText {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes page-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.page-fade-in {
+  animation: page-fade-in 0.5s ease-out;
+}
+
+/* Pin personalizado para el mapa */
+.map-pin-wrapper {
+  position: relative;
+  width: 48px;
+  height: 70px;
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.35));
+}
+
+/* Cuerpo principal del pin */
+.map-pin-body {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+/* Punta del pin */
+.map-pin-body::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -14px;
+  width: 0;
+  height: 0;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  transform: translateX(-50%);
+  z-index: 0;
+}
+
+/* PIN DE SEDES (naranja) */
+.map-pin-body-branch {
+  background: #ea580c;
+}
+
+.map-pin-body-branch::after {
+  border-top: 18px solid #ea580c;
+}
+
+/* PIN DE USUARIO (negro) */
+.map-pin-body-user {
+  background: #1f2937;
+}
+
+.map-pin-body-user::after {
+  border-top: 18px solid #1f2937;
+}
+
+/* CONTENEDOR DEL LOGO - centrado correctamente */
+.map-pin-logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 2px solid #ffffff;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Page Transition Animations */
+.page-transition {
+  animation-duration: 0.3s;
+  animation-fill-mode: both;
+}
+
+.page-transition.fadeIn {
+  animation-name: fadeIn;
+}
+
+.page-transition.fadeOut {
+  animation-name: fadeOut;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes shimmer {
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Map User Marker (Personita) */
+.custom-user-marker {
+  z-index: 1000 !important;
+}
+
+.user-marker-container {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-marker-pulse {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(234, 88, 12, 0.4);
+  border-radius: 50%;
+  animation: user-pulse 2s infinite;
+}
+
+.user-marker-icon {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  background: #ea580c;
+  border: 2px solid white;
+  border-radius: 50%;
+  padding: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes user-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
+
+/* Three-Body Loader Animation */
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+  width: 100%;
+}
+
+.three-body {
+  --uib-size: 45px;
+  --uib-speed: 0.8s;
+  --uib-color: #f97316;
+  /* orange-500 */
+  position: relative;
+  display: inline-block;
+  height: var(--uib-size);
+  width: var(--uib-size);
+  animation: spin78236 calc(var(--uib-speed) * 2.5) infinite linear;
+}
+
+.three-body__dot {
+  position: absolute;
+  height: 100%;
+  width: 30%;
+}
+
+.three-body__dot:after {
+  content: '';
+  position: absolute;
+  height: 0%;
+  width: 100%;
+  padding-bottom: 100%;
+  background-color: var(--uib-color);
+  border-radius: 50%;
+}
+
+.three-body__dot:nth-child(1) {
+  bottom: 5%;
+  left: 0;
+  transform: rotate(60deg);
+  transform-origin: 50% 85%;
+}
+
+.three-body__dot:nth-child(1)::after {
+  bottom: 0;
+  left: 0;
+  animation: wobble1 var(--uib-speed) infinite ease-in-out;
+  animation-delay: calc(var(--uib-speed) * -0.3);
+}
+
+.three-body__dot:nth-child(2) {
+  bottom: 5%;
+  right: 0;
+  transform: rotate(-60deg);
+  transform-origin: 50% 85%;
+}
+
+.three-body__dot:nth-child(2)::after {
+  bottom: 0;
+  left: 0;
+  animation: wobble1 var(--uib-speed) infinite calc(var(--uib-speed) * -0.15) ease-in-out;
+}
+
+.three-body__dot:nth-child(3) {
+  bottom: -5%;
+  left: 0;
+  transform: translateX(116.666%);
+}
+
+.three-body__dot:nth-child(3)::after {
+  top: 0;
+  left: 0;
+  animation: wobble2 var(--uib-speed) infinite ease-in-out;
+}
+
+@keyframes spin78236 {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes wobble1 {
+
+  0%,
+  100% {
+    transform: translateY(0%) scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: translateY(-66%) scale(0.65);
+    opacity: 0.8;
+  }
+}
+
+@keyframes wobble2 {
+
+  0%,
+  100% {
+    transform: translateY(0%) scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: translateY(66%) scale(0.65);
+    opacity: 0.8;
+  }
+}
