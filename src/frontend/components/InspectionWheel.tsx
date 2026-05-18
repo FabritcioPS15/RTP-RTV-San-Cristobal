@@ -167,10 +167,8 @@ const InspectionWheel: React.FC = () => {
                     </div>
 
                     {/* Middle Wheel */}
-                     <div className="lg:col-span-8 relative flex items-center justify-center order-1 lg:order-2">
-                         {/* Vertical accent bar */}
-                          <div className="absolute left-0 top-1/2 h-48 w-1.5 bg-orange-500 rounded-full -translate-x-1/2 -translate-y-1/2" />
-                         <RevealOnScroll className="relative w-full aspect-square max-w-[650px]">
+                    <div className="lg:col-span-8 relative flex items-center justify-center order-1 lg:order-2">
+                        <RevealOnScroll className="relative w-full aspect-square max-w-[650px]">
                             {/* Background decoration elements */}
                             <div className="absolute inset-0 bg-orange-500/5 rounded-full blur-3xl scale-110 animate-pulse" />
 

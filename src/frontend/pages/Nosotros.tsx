@@ -731,36 +731,6 @@ function Nosotros() {
           </div>
         </section>
 
-        {/* 6. FINAL CTA SECTION */}
-        <section className="max-w-7xl mx-auto px-4 py-24">
-          <div className="bg-[#121826] rounded-[2.5rem] p-12 md:p-24 flex flex-col lg:flex-row items-center justify-between gap-16 shadow-2xl relative overflow-hidden">
-            {/* Ambient light for decoration */}
-            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-orange-500/10 blur-[150px] -translate-y-1/2 translate-x-1/2 rounded-full" />
-
-            <div className="relative z-10 lg:w-1/2 space-y-10">
-              <h2 className="text-5xl md:text-6xl font-bold text-white tracking-tight leading-[1.1]">
-                Precisión que genera confianza.
-              </h2>
-              <p className="content-text text-gray-400 max-w-md">
-                Nuestros laboratorios operan bajo estándares de calidad aeroespacial adaptados a la seguridad vial.
-              </p>
-              <PremiumButton className="px-10 py-5 text-lg shadow-orange-500/30">
-                Agendar Inspección
-              </PremiumButton>
-            </div>
-
-            <div className="relative z-10 lg:w-1/3 flex flex-col gap-6">
-              <div className="bg-white/5 backdrop-blur-xl border border-white/10 p-8 rounded-3xl group hover:bg-white/10 transition-colors">
-                <h4 className="text-orange-500 font-black text-2xl mb-1">ISO 9001:2015</h4>
-                <p className="text-white/60 uppercase tracking-widest text-xs font-bold">Calidad Certificada</p>
-              </div>
-              <div className="bg-white/5 backdrop-blur-xl border border-white/10 p-8 rounded-3xl group hover:bg-white/10 transition-colors">
-                <h4 className="text-orange-500 font-black text-2xl mb-1">ISO 17025</h4>
-                <p className="text-white/60 uppercase tracking-widest text-xs font-bold">Competencia de Laboratorios</p>
-              </div>
-            </div>
-          </div>
-        </section>
 
         {/* Modal Popup para información de sucursal - Usando Portal para asegurar centrado */}
         {selectedBranch && ReactDOM.createPortal(
